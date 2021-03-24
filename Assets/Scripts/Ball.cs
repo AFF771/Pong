@@ -5,29 +5,49 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     [SerializeField]
-        float velocidade = 5f;
+    float v = 5f;
 
-    bool lançamento = false;
-    float tempo;
-    float tempoAdicionar;
+    bool launch = false;
+    float time;
+    float AddTime;
 
     [SerializeField]
-        float tempolançamento = 2f;
+    float LaunchTime = 2f;
+
+    [SerializeField]
+    float angle = 0.5f;
+
+    float LaunchAngleXabs;
+    
+    public void Adjust ()
+    {
+        Debug.Log(GetComponent<Rigidbody2D>().velocity);
+    }
 
     void Update()
     {
         //---------------------Timer---------------------------------
-        tempoAdicionar = Time.deltaTime;
-        tempo += tempoAdicionar;
-        Debug.Log("Time = " + (Mathf.Round(tempo*100f)/100f) + "s");
+            AddTime = Time.deltaTime;
+            time += AddTime;
+        //Debug.Log("Time = " + (Mathf.Round(time*100f)/100f) + "s");
         //---------------------Timer---------------------------------
 
-        if (lançamento == false)
+        if (launch == false)
         {
-            if (tempo >= tempolançamento)
+            if (time >= LaunchTime)
             {
-                GetComponent<Rigidbody2D>().velocity = velocidade * Random.insideUnitSphere;
-                lançamento = true;
+                Vector3 LaunchAngle = Random.insideUnitCircle.normalized;
+                    // LaunchAngleXabs -> absolute value of LAunchAngle.x
+                LaunchAngleXabs = Mathf.Abs(LaunchAngle.x);
+                    // angle -> cosine (x coordinate in unit circle)   
+                if (LaunchAngleXabs > angle)
+                {
+                    GetComponent<Rigidbody2D>().velocity = v * LaunchAngle;
+                        //Debug.Log(LaunchAngle.x + "x, " + LaunchAngle.y);
+                        //Debug.Log(GetComponent<Rigidbody2D>().velocity);
+                    launch = true;
+
+                }
             }
         }
     }
