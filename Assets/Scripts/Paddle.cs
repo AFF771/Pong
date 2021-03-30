@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Paddle_1 : MonoBehaviour
+public class Paddle : MonoBehaviour
 {
     [SerializeField]
         float velocity = 0.5f;
 
     [SerializeField]
         KeyCode upKey = KeyCode.W;
-
     [SerializeField]
         KeyCode downKey = KeyCode.S;
+
+    [SerializeField]
+        Ball Ball;
 
     void Update()
      {
@@ -35,5 +37,12 @@ public class Paddle_1 : MonoBehaviour
                         -cameraheight + halfPaddlesize, 
                         cameraheight - halfPaddlesize);
         transform.position = positionAux;
-     }  
+     }
+
+    public void PaddleReset()
+    {
+        Vector3 positionAux = transform.position;
+        positionAux.y = 0;
+        transform.position = positionAux;
+    }
 }

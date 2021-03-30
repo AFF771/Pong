@@ -5,25 +5,62 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     [SerializeField]
-    float v = 5f;
+        float v;
+    [SerializeField]
+        float LaunchTime = 2f;
+    [SerializeField]
+        float angle = 0.5f;
+    [SerializeField]
+        float RandomMin = 0.5f;
+    [SerializeField]
+        float RandomMax = 1.5f;
 
     bool launch = false;
     float time;
     float AddTime;
-
-    [SerializeField]
-    float LaunchTime = 2f;
-
-    [SerializeField]
-    float angle = 0.5f;
-
     float LaunchAngleXabs;
-    
-    public void Adjust ()
+
+    public void Adjust()
     {
-        Debug.Log(GetComponent<Rigidbody2D>().velocity);
+        Vector3 CurrentV = GetComponent<Rigidbody2D>().velocity;
+        CurrentV *= Random.Range(RandomMin, RandomMax);
+        GetComponent<Rigidbody2D>().velocity = CurrentV;
     }
 
+    public void PadlleRebounce()
+    {
+        // What happens to the ball when it hits the paddle?
+        // The velocity vector of the ball must be 
+        // dependant on the direction and speed of the paddle
+        // How to get paddle velocity?
+
+    }
+ 
+
+    public void Reset()
+    {
+        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        Vector3 PositionAux = transform.position;
+        PositionAux = Vector3.zero;
+        transform.position = PositionAux;
+
+        time = 0;
+        launch = false;
+        Update();
+    }
+
+    public void GameReset()
+    {
+        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        Vector3 PositionAux = transform.position;
+        PositionAux = Vector3.zero;
+        transform.position = PositionAux;
+
+        time = -2;
+        launch = false;
+        Update();
+    }
+        
     void Update()
     {
         //---------------------Timer---------------------------------
@@ -46,7 +83,6 @@ public class Ball : MonoBehaviour
                         //Debug.Log(LaunchAngle.x + "x, " + LaunchAngle.y);
                         //Debug.Log(GetComponent<Rigidbody2D>().velocity);
                     launch = true;
-
                 }
             }
         }
