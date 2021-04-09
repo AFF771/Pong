@@ -15,6 +15,7 @@ public class Ball : MonoBehaviour
     [SerializeField]
         float RandomMax = 1.5f;
 
+
     bool launch = false;
     float time;
     float AddTime;
@@ -26,16 +27,6 @@ public class Ball : MonoBehaviour
         CurrentV *= Random.Range(RandomMin, RandomMax);
         GetComponent<Rigidbody2D>().velocity = CurrentV;
     }
-
-    public void PadlleRebounce()
-    {
-        // What happens to the ball when it hits the paddle?
-        // The velocity vector of the ball must be 
-        // dependant on the direction and speed of the paddle
-        // How to get paddle velocity?
-
-    }
- 
 
     public void Reset()
     {

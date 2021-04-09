@@ -1570,8 +1570,8 @@ MonoBehaviour:
   v: 5
   LaunchTime: 1
   angle: 0.2
-  RandomMin: 0.9
-  RandomMax: 1.1
+  RandomMin: 0.5
+  RandomMax: 1.5
 --- !u!61 &1522911244
 BoxCollider2D:
   m_ObjectHideFlags: 0
