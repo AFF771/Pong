@@ -7,15 +7,12 @@ public class WallRight : MonoBehaviour
     [SerializeField]
         ScoreKeeper ScoreKeeper;
 
-
     [SerializeField]
     Paddle Paddle_1;
 
     [SerializeField]
     Paddle Paddle_2;
 
-    //Camel case -> métodos/ classes
-    //pascal case -> variáveis
 
     private void OnCollisionEnter2D (Collision2D colision)
     {

@@ -10,23 +10,11 @@ public class Ball : MonoBehaviour
         float LaunchTime = 2f;
     [SerializeField]
         float angle = 0.5f;
-    [SerializeField]
-        float RandomMin = 0.5f;
-    [SerializeField]
-        float RandomMax = 1.5f;
-
 
     bool launch = false;
     float time;
     float AddTime;
     float LaunchAngleXabs;
-
-    public void Adjust()
-    {
-        Vector3 CurrentV = GetComponent<Rigidbody2D>().velocity;
-        CurrentV *= Random.Range(RandomMin, RandomMax);
-        GetComponent<Rigidbody2D>().velocity = CurrentV;
-    }
 
     public void Reset()
     {
